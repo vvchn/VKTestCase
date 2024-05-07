@@ -1,4 +1,4 @@
-package com.vvchn.vktestcase.ui.theme
+package com.vvchn.vktestcase.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

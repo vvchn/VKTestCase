@@ -58,7 +58,6 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", name = "converter-gson", version.ref = "retrofit" }
-retrofit-adapters-result = { module = "com.github.skydoves:retrofit-adapters-result", version.ref = "retrofitAdapters" }
 glide = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide" }
 
 # Coroutines
@@ -89,7 +88,6 @@ retrofit = [
     "okhttp-logging",
     "retrofit-converter",
     "google-gson",
-    "retrofit-adapters-result",
 ]
 
 hilt = [

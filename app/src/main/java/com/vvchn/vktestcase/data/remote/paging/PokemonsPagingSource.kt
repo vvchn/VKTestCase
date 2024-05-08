@@ -1,4 +1,4 @@
-package com.vvchn.vktestcase.data.remote.pagingsources
+package com.vvchn.vktestcase.data.remote.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -56,21 +56,19 @@ class PokemonsPagingSource(
                 nextKey = nextKey,
                 prevKey = prevKey
             )
-        } catch (e: Exception) {
-            LoadResult.Error(
-                throwable = e
-            )
         } catch (e: HttpException) {
             LoadResult.Error(
                 throwable = e
             )
-        }
-        catch (e: IOException) {
+        } catch (e: SocketTimeoutException) {
             LoadResult.Error(
                 throwable = e
             )
-        }
-        catch (e: SocketTimeoutException) {
+        } catch (e: IOException) {
+            LoadResult.Error(
+                throwable = e
+            )
+        } catch (e: Exception) {
             LoadResult.Error(
                 throwable = e
             )

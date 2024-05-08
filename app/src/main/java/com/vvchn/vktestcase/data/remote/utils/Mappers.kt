@@ -11,7 +11,8 @@ internal fun PokemonDto.toPokemon(): Pokemon {
     return Pokemon(
         id = id,
         image = image,
-        name = name
+        name = name,
+        url = url,
     )
 }
 

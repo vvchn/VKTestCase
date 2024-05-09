@@ -9,8 +9,9 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
+import javax.inject.Inject
 
-class RequestDetailedPokemonUseCase(private val repository: PokeRepository) {
+class RequestDetailedPokemonUseCase @Inject constructor (private val repository: PokeRepository) {
     operator fun invoke(
         url: String,
     ): Flow<Resource<PokemonDetailed>> = flow {

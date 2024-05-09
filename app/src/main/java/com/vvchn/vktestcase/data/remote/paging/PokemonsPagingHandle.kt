@@ -21,10 +21,8 @@ class PokemonsPagingHandle(
     private var pagingSource: PagingSource<Int, Pokemon>? = null
 
     @Suppress("MemberVisibilityCanBePrivate")
-    val pokemonPagingDataFlow: Flow<PagingData<Pokemon>>
-
-    init {
-        pokemonPagingDataFlow = Pager(
+    val pokemonPagingDataFlow: Flow<PagingData<Pokemon>> by lazy {
+        Pager(
             PagingConfig(
                 limit ?: DEFAULT_PAGE_SIZE
             )
@@ -36,7 +34,6 @@ class PokemonsPagingHandle(
         }
             .flow
             .cachedIn(coroutineScope)
-
     }
 
     fun refresh() {

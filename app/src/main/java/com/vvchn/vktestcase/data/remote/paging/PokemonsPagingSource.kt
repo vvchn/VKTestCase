@@ -3,6 +3,7 @@ package com.vvchn.vktestcase.data.remote.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.vvchn.vktestcase.data.remote.api.PokeApi
+import com.vvchn.vktestcase.data.remote.api.PokemonsApi
 import com.vvchn.vktestcase.data.remote.api.dtos.ApiResponse
 import com.vvchn.vktestcase.data.remote.api.dtos.PokemonDto
 import com.vvchn.vktestcase.data.remote.utils.toPokemon
@@ -11,8 +12,9 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
-class PokemonsPagingSource(
-    private val api: PokeApi,
+class PokemonsPagingSource (
+    private val pokeApi: PokeApi,
+    private val pokemonsApi: PokemonsApi,
 ) : PagingSource<Int, Pokemon>() {
 
     private var _nextPageUrl: String? = null
@@ -37,15 +39,15 @@ class PokemonsPagingSource(
             val prevKey: Int?
 
             if (nextPageUrl == null) {
-                apiResponse = api.requestPokemonsList(loadSize)
+                apiResponse = pokeApi.requestResourcesList(loadSize)
             } else {
-                apiResponse = api.continueRequestPokemonsList(nextPageUrl)
+                apiResponse = pokeApi.continueRequestResoursesList(nextPageUrl)
             }
 
             _nextPageUrl = apiResponse.next
 
             apiResponse.results.forEach { pokemon ->
-                pokemons.add(api.requestPokemon(pokemon.url))
+                pokemons.add(pokemonsApi.requestPokemon(pokemon.url))
             }
 
             nextKey = if (apiResponse.count == 0 || loaded >= apiResponse.count) null else page + 1

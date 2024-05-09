@@ -7,6 +7,8 @@ import com.google.gson.JsonParseException
 import com.vvchn.vktestcase.data.remote.api.dtos.PokemonDetailedDto
 import com.vvchn.vktestcase.data.remote.api.dtos.PokemonDto
 import com.vvchn.vktestcase.data.remote.api.dtos.StatDto
+import com.vvchn.vktestcase.data.remote.utils.Constants.BASE_URL
+import com.vvchn.vktestcase.data.remote.utils.Constants.POKEMON
 import java.lang.reflect.Type
 
 class PokemonDetailedDeserializer : JsonDeserializer<PokemonDetailedDto> {
@@ -88,8 +90,8 @@ class PokemonDeserializer : JsonDeserializer<PokemonDto> {
         context: JsonDeserializationContext?
     ): PokemonDto {
         val id: Int
-        val name: String
         val imageUrl: String
+        val name: String
 
         val jsonObject = json?.asJsonObject
 
@@ -105,7 +107,8 @@ class PokemonDeserializer : JsonDeserializer<PokemonDto> {
         return PokemonDto(
             id = id,
             name = name,
-            image = imageUrl
+            image = imageUrl,
+            url = BASE_URL + POKEMON + "/$id"
         )
     }
 }

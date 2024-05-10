@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.vvchn.vktestcase.presentation.mainscreen.PokemonsListScreenState
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,7 +50,7 @@ fun PokemonsList(
     ) {
         screenState.pokemonPagingDataFlow.collectAsLazyPagingItems().apply {
             when {
-                (loadState.refresh is LoadState.Loading) && (isSwipeToRefreshWorking == false) -> {
+                (itemCount == 0) && (loadState.refresh is LoadState.Loading) && (isSwipeToRefreshWorking == false) -> {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center),
                         color = MaterialTheme.colorScheme.primary
@@ -86,10 +87,13 @@ fun PokemonsList(
                 }
             }
 
-            LaunchedEffect(key1 = isSwipeToRefreshWorking, key2 = this@apply.loadState.refresh) {
+            LaunchedEffect(isSwipeToRefreshWorking) {
                 if (isSwipeToRefreshWorking) {
                     pullToRefreshState.startRefresh()
                 }
+            }
+
+            LaunchedEffect(this@apply.loadState.refresh) {
                 if (isSwipeToRefreshWorking && this@apply.loadState.refresh !is LoadState.Loading) {
                     isSwipeToRefreshWorking = false
                     pullToRefreshState.endRefresh()
@@ -104,9 +108,6 @@ fun PokemonsList(
                         error = (this@apply.loadState.append as LoadState.Error).error
                     )
                 }
-            }
-
-            LaunchedEffect(this@apply.loadState) {
                 if (this@apply.isErrorOccurredWhileRefreshing()) {
                     SnackbarErrorMessage(
                         context = context,
@@ -115,7 +116,6 @@ fun PokemonsList(
                     )
                 }
             }
-
         }
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VKTestCase</string>
+    <string name="pokemons">Покемончики</string>
+    <string name="swipe_to_reload">Вы можете свайпнуть вниз чтобы повторить загрузку</string>
+    <string name="nothing_here">Здесь ничего нет :(</string>
+    <string name="timed_out">Превышено время ожидания запроса</string>
+    <string name="httpError">Ошибка HTTP:</string>
+    <string name="unknown_error">Произошла неизвестная ошибка</string>
+    <string name="check_connection">Проверьте подключение к интернету</string>
+</resources>

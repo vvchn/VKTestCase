@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">VKTestCase</string>
+    <string name="pokemons">Pokemons</string>
+    <string name="swipe_to_reload">You can swipe down to reload</string>
+    <string name="nothing_here">There\'s nothing here :(</string>
+    <string name="timed_out">The connection has timed out</string>
+    <string name="httpError">HTTP Error:</string>
+    <string name="unknown_error">An unknown error has occurred</string>
+    <string name="check_connection">Check your internet connection</string>
 </resources>

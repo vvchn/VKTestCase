@@ -24,7 +24,8 @@ class PokemonsPagingHandle(
     val pokemonPagingDataFlow: Flow<PagingData<Pokemon>> by lazy {
         Pager(
             PagingConfig(
-                limit ?: DEFAULT_PAGE_SIZE
+                pageSize = limit ?: DEFAULT_PAGE_SIZE,
+                initialLoadSize = limit ?: DEFAULT_PAGE_SIZE,
             )
         ) {
             PokemonsPagingSource(
@@ -36,7 +37,7 @@ class PokemonsPagingHandle(
             .cachedIn(coroutineScope)
     }
 
-    fun refresh() {
+    fun invalidate() {
         pagingSource?.invalidate()
     }
 

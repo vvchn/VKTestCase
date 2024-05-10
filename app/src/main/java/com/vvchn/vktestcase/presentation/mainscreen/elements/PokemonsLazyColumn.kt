@@ -42,6 +42,7 @@ fun PokemonsLazyColumn(
                 val item = items[index]
                 if (item != null) itemKey(item) else "empty"
             }
+
         ) { index ->
             items[index]?.let { item ->
                 content(item)

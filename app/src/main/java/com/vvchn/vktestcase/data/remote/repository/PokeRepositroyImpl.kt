@@ -6,6 +6,8 @@ import com.vvchn.vktestcase.data.remote.api.PokemonsApi
 import com.vvchn.vktestcase.data.remote.api.PokemonDetailedApi
 import com.vvchn.vktestcase.data.remote.paging.PokemonsPagingHandle
 import com.vvchn.vktestcase.data.remote.utils.toPokemonDetailed
+import com.vvchn.vktestcase.di.PokemonLocations
+import com.vvchn.vktestcase.di.Pokemons
 import com.vvchn.vktestcase.domain.models.PokemonDetailed
 import com.vvchn.vktestcase.domain.repository.PokeRepository
 import kotlinx.coroutines.CoroutineScope
@@ -13,9 +15,9 @@ import javax.inject.Inject
 
 class PokeRepositroyImpl @Inject constructor (
     private val pokeApi: PokeApi,
-    private val pokemonsApi: PokemonsApi,
-    private val pokemonDetailedApi: PokemonDetailedApi,
-    private val pokemonsLocationsApi: PokemonLocationsApi,
+    @Pokemons private val pokemonsApi: PokemonsApi,
+    @com.vvchn.vktestcase.di.PokemonDetailed private val pokemonDetailedApi: PokemonDetailedApi,
+    @PokemonLocations private val pokemonsLocationsApi: PokemonLocationsApi,
 ) : PokeRepository {
     override fun requestPokemons(
         coroutineScope: CoroutineScope,

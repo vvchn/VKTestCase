@@ -11,6 +11,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -28,6 +29,11 @@ object NetworkModule {
             .newBuilder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
+            // TODO: Delete later
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            //
             .build()
     }
 
@@ -45,7 +51,7 @@ object NetworkModule {
     @Provides
     @Singleton
     @Pokemons
-    fun providePokemonsApi(client: OkHttpClient, gson: Gson): PokemonsApi {
+    fun providePokemonsApi (client: OkHttpClient, @Pokemons gson: Gson): PokemonsApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
@@ -57,7 +63,7 @@ object NetworkModule {
     @Provides
     @Singleton
     @PokemonDetailed
-    fun providePokemonDetailedApi(client: OkHttpClient, gson: Gson): PokemonDetailedApi {
+    fun providePokemonDetailedApi(client: OkHttpClient, @PokemonDetailed gson: Gson): PokemonDetailedApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
@@ -69,7 +75,7 @@ object NetworkModule {
     @Provides
     @Singleton
     @PokemonLocations
-    fun providePokemonLocationsApi(client: OkHttpClient, gson: Gson): PokemonLocationsApi {
+    fun providePokemonLocationsApi(client: OkHttpClient, @PokemonLocations gson: Gson): PokemonLocationsApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)

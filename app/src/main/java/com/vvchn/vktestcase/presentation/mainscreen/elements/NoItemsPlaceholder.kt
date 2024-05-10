@@ -1,5 +1,7 @@
 package com.vvchn.vktestcase.presentation.mainscreen.elements
 
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
@@ -25,44 +29,32 @@ import com.vvchn.vktestcase.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoItemsPlaceholder(
-    paddingValues: PaddingValues = PaddingValues(),
     pullToRefreshState: PullToRefreshState = rememberPullToRefreshState(),
 ) {
-    Box(
+    Column(
         modifier = Modifier
-            .padding(paddingValues)
             .fillMaxSize()
-            .nestedScroll(pullToRefreshState.nestedScrollConnection)
+            .padding(vertical = 5.dp)
+            .verticalScroll(rememberScrollState())
+            .nestedScroll(pullToRefreshState.nestedScrollConnection),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Column(
+        Text(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(vertical = 5.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentSize(Alignment.Center),
-                text = stringResource(id = R.string.nothing_here),
-                maxLines = 2,
-                textAlign = TextAlign.Center,
-            )
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentSize(Alignment.Center),
-                text = stringResource(id = R.string.swipe_to_reload),
-                maxLines = 2,
-                textAlign = TextAlign.Center,
-            )
-        }
-
-        PullToRefreshContainer(
-            state = pullToRefreshState,
+                .fillMaxWidth()
+                .wrapContentSize(Alignment.Center),
+            text = stringResource(id = R.string.nothing_here),
+            maxLines = 2,
+            textAlign = TextAlign.Center,
+        )
+        Text(
             modifier = Modifier
-                .align(Alignment.TopCenter)
+                .fillMaxWidth()
+                .wrapContentSize(Alignment.Center),
+            text = stringResource(id = R.string.swipe_to_reload),
+            maxLines = 2,
+            textAlign = TextAlign.Center,
         )
     }
 }

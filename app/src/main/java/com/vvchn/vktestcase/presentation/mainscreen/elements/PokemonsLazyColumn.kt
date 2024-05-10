@@ -1,8 +1,8 @@
 package com.vvchn.vktestcase.presentation.mainscreen.elements
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,15 +27,14 @@ fun PokemonsLazyColumn(
     lazyListState: LazyListState = rememberLazyListState(),
     items: LazyPagingItems<Pokemon>,
     itemSpacing: Dp,
-    contentPadding: PaddingValues = PaddingValues(),
     itemKey: (Pokemon) -> String,
     content: @Composable (item: Pokemon) -> Unit,
 ) {
     LazyColumn(
         state = lazyListState,
         modifier = modifier,
-        contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(itemSpacing),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(
             count = items.itemCount,
@@ -47,7 +47,7 @@ fun PokemonsLazyColumn(
                 content(item)
             }
         }
-        if (items.loadState.refresh is LoadState.Loading) {
+        if (items.loadState.append is LoadState.Loading) {
             item(
                 key = "LoadingProgress"
             ) {
@@ -63,11 +63,13 @@ fun LoadingProgressIndicator() {
         Modifier
             .fillMaxSize()
             .wrapContentHeight()
+            .background(MaterialTheme.colorScheme.background)
             .padding(vertical = 16.dp),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.size(32.dp)
+            modifier = Modifier.size(32.dp),
+            color = MaterialTheme.colorScheme.primary
         )
     }
 }

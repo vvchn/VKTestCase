@@ -54,7 +54,7 @@ class PokemonDetailedDeserializer : JsonDeserializer<PokemonDetailedDto> {
         } ?: ""
 
         // Stats
-        statsArray?.forEach {statElement ->
+        statsArray?.forEach { statElement ->
             val statObject = statElement.asJsonObject
             val statName = statObject.getAsJsonObject("stat").get("name").asString
             val baseStat = statObject.get("base_stat").asInt
@@ -62,11 +62,11 @@ class PokemonDetailedDeserializer : JsonDeserializer<PokemonDetailedDto> {
         }
 
         // Other parameters
-        height = jsonObject?.let { it.getAsJsonObject("height").asInt } ?: 0
-        id = jsonObject?.let { it.getAsJsonObject("id").asInt } ?: 0
-        locationsUrl = jsonObject?.let { it.getAsJsonObject("location_area_encounters").asString } ?: ""
-        name = jsonObject?.let { it.getAsJsonObject("name").asString } ?: ""
-        weight = jsonObject?.let { it.getAsJsonObject("weight").asInt } ?: 0
+        height = jsonObject?.let { it.get("height").asInt } ?: 0
+        id = jsonObject?.let { it.get("id").asInt } ?: 0
+        locationsUrl = jsonObject?.let { it.get("location_area_encounters").asString } ?: ""
+        name = jsonObject?.let { it.get("name").asString } ?: ""
+        weight = jsonObject?.let { it.get("weight").asInt } ?: 0
 
         return PokemonDetailedDto(
             abilities = abilitiesList,
@@ -95,13 +95,13 @@ class PokemonDeserializer : JsonDeserializer<PokemonDto> {
 
         val jsonObject = json?.asJsonObject
 
-        id = jsonObject?.let { it.getAsJsonObject("id").asInt } ?: 0
-        name = jsonObject?.let { it.getAsJsonObject("name").asString } ?: ""
+        id = jsonObject?.let { it.get("id").asInt } ?: 0
+        name = jsonObject?.let { it.get("name").asString } ?: ""
 
         // Link to Pokemon image
         imageUrl = jsonObject?.let {
-            it.getAsJsonObject("sprites").getAsJsonObject("other").getAsJsonObject("dream_world")
-                .get("front_default").asString
+            it.getAsJsonObject("sprites").getAsJsonObject("other")?.getAsJsonObject("dream_world")
+                ?.get("front_default")?.asString
         } ?: ""
 
         return PokemonDto(

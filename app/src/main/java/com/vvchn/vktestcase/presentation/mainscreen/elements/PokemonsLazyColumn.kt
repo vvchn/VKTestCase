@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import com.vvchn.vktestcase.domain.models.Pokemon
 
@@ -38,8 +39,8 @@ fun PokemonsLazyColumn(
     ) {
         items(
             count = items.itemCount,
-            key = items.itemKey { it.id }
-
+            key = items.itemKey { it.id },
+            contentType = items.itemContentType { it }
         ) { index ->
             items[index]?.let { item ->
                 content(item)

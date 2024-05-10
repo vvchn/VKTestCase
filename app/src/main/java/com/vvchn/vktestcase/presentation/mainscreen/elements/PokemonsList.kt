@@ -47,7 +47,7 @@ fun PokemonsList(
             .background(MaterialTheme.colorScheme.background)
             .nestedScroll(pullToRefreshState.nestedScrollConnection)
     ) {
-        screenState.pokemonsPagingHandle?.pokemonPagingDataFlow?.collectAsLazyPagingItems()?.apply {
+        screenState.pokemonPagingDataFlow.collectAsLazyPagingItems().apply {
             when {
                 (loadState.refresh is LoadState.Loading) && (isSwipeToRefreshWorking == false) -> {
                     CircularProgressIndicator(
@@ -66,7 +66,8 @@ fun PokemonsList(
                     PokemonsLazyColumn(
                         items = this@apply,
                         itemKey = { it.id.toString() },
-                        itemSpacing = 16.dp
+                        itemSpacing = 16.dp,
+                        modifier = Modifier.fillMaxSize()
                     ) { pokemon ->
                         PokemonItem(pokemon = pokemon)
                     }

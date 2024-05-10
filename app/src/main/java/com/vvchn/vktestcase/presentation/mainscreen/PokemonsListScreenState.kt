@@ -1,7 +1,10 @@
 package com.vvchn.vktestcase.presentation.mainscreen
 
-import com.vvchn.vktestcase.data.remote.paging.PokemonsPagingHandle
+import androidx.paging.PagingData
+import com.vvchn.vktestcase.domain.models.Pokemon
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 
 data class PokemonsListScreenState(
-    val pokemonsPagingHandle: PokemonsPagingHandle? = null
+    val pokemonPagingDataFlow: Flow<PagingData<Pokemon>> = emptyFlow()
 )

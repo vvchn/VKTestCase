@@ -51,7 +51,7 @@ class PokemonsPagingSource (
                 pokemons.add(pokemonsApi.requestPokemon(pokemon.url))
             }
 
-            nextKey = if (apiResponse.count == 0 || loaded >= apiResponse.count) null else page + 1
+            nextKey = if (_nextPageUrl == null) null else page + 1
             prevKey = if (page == 1) null else page - 1
 
             return LoadResult.Page(

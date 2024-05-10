@@ -1,14 +1,14 @@
 package com.vvchn.vktestcase.domain.repository
 
-import com.vvchn.vktestcase.data.remote.paging.PokemonsPagingHandle
+import androidx.paging.PagingData
+import com.vvchn.vktestcase.domain.models.Pokemon
 import com.vvchn.vktestcase.domain.models.PokemonDetailed
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 
 interface PokeRepository {
     fun requestPokemons(
-        coroutineScope: CoroutineScope,
         limit: Int?
-    ): PokemonsPagingHandle
+    ): Flow<PagingData<Pokemon>>
 
     suspend fun requestDetailedPokemon(
         url: String

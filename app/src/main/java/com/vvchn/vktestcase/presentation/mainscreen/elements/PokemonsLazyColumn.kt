@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemKey
 import com.vvchn.vktestcase.domain.models.Pokemon
 
 @Composable
@@ -27,7 +28,6 @@ fun PokemonsLazyColumn(
     lazyListState: LazyListState = rememberLazyListState(),
     items: LazyPagingItems<Pokemon>,
     itemSpacing: Dp,
-    itemKey: (Pokemon) -> String,
     content: @Composable (item: Pokemon) -> Unit,
 ) {
     LazyColumn(
@@ -38,10 +38,7 @@ fun PokemonsLazyColumn(
     ) {
         items(
             count = items.itemCount,
-            key = { index ->
-                val item = items[index]
-                if (item != null) itemKey(item) else "empty"
-            }
+            key = items.itemKey { it.id }
 
         ) { index ->
             items[index]?.let { item ->

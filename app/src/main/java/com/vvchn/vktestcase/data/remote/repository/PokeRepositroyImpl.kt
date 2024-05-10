@@ -28,6 +28,7 @@ class PokeRepositroyImpl @Inject constructor (
         val _limit = (limit ?: DEFAULT_PAGE_SIZE)
         return Pager(
             PagingConfig(
+                prefetchDistance = 2,
                 pageSize = _limit,
                 initialLoadSize = _limit,
             )

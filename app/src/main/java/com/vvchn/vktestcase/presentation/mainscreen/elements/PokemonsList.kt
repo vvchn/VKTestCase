@@ -65,7 +65,6 @@ fun PokemonsList(
                 else -> {
                     PokemonsLazyColumn(
                         items = this@apply,
-                        itemKey = { it.id.toString() },
                         itemSpacing = 16.dp,
                         modifier = Modifier.fillMaxSize()
                     ) { pokemon ->

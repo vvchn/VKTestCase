@@ -49,8 +49,7 @@ class PokemonDetailedDeserializer : JsonDeserializer<PokemonDetailedDto> {
 
         // Link to Pokemon image
         imageUrl = jsonObject?.let {
-            it.getAsJsonObject("sprites").getAsJsonObject("other").getAsJsonObject("dream_world")
-                .get("front_default").asString
+            it.getAsJsonObject("sprites")?.get("front_default")?.asString
         } ?: ""
 
         // Stats

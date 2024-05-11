@@ -1,4 +1,4 @@
-package com.vvchn.vktestcase.common
+package com.vvchn.vktestcase.shared
 
 sealed class PagingExceptions : Throwable() {
     class NetworkError(val httpCode: Int) : PagingExceptions()

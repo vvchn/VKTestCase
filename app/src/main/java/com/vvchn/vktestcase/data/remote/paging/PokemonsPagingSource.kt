@@ -2,7 +2,7 @@ package com.vvchn.vktestcase.data.remote.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.vvchn.vktestcase.common.PagingExceptions
+import com.vvchn.vktestcase.shared.PagingExceptions
 import com.vvchn.vktestcase.data.remote.api.PokeApi
 import com.vvchn.vktestcase.data.remote.api.PokemonsApi
 import com.vvchn.vktestcase.data.remote.api.dtos.ApiResponse

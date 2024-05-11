@@ -1,4 +1,4 @@
-package com.vvchn.vktestcase.presentation.mainscreen.elements
+package com.vvchn.vktestcase.presentation.shared
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

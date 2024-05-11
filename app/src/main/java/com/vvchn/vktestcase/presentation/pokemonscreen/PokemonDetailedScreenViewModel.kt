@@ -45,8 +45,4 @@ class PokemonDetailedScreenViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-
-    fun onGoingBack() {
-        _state.update { it.copy(error = null, isPokemonLoading = true) }
-    }
 }

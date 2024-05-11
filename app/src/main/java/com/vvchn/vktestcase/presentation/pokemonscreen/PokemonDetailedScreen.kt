@@ -65,7 +65,6 @@ fun PokemonDetailedScreen(
                 },
                 actions = {
                     IconButton(onClick = {
-                        vm.onGoingBack()
                         navController.popBackStack()
                     }) {
                         Icon(

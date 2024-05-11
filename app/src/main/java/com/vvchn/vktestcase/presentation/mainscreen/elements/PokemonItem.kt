@@ -45,8 +45,8 @@ fun PokemonItem(
             .clip(roundedCornerShape)
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .clickable {
-                val encodedPokemonUrl = Uri.encode(pokemon.url)
-                navController.navigate("${Route.PokemonDetailedScreen.route}/${encodedPokemonUrl}")
+                val pokemonEncodedUrl = Uri.encode(pokemon.url)
+                navController.navigate("${Route.PokemonDetailedScreen.route}/${pokemonEncodedUrl}")
             }
     ) {
         Row(

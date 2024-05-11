@@ -26,6 +26,8 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.vvchn.vktestcase.presentation.mainscreen.PokemonsListScreenState
+import com.vvchn.vktestcase.presentation.shared.NoItemsPlaceholder
+import com.vvchn.vktestcase.presentation.shared.SnackbarErrorMessage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -40,7 +40,6 @@ fun NoItemsPlaceholder(
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center),
             text = stringResource(id = R.string.nothing_here),
-            maxLines = 2,
             textAlign = TextAlign.Center,
         )
         Text(
@@ -48,7 +47,6 @@ fun NoItemsPlaceholder(
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center),
             text = stringResource(id = R.string.swipe_to_reload),
-            maxLines = 2,
             textAlign = TextAlign.Center,
         )
     }

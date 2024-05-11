@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -61,7 +62,6 @@ fun PokemonItem(
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .size(100.dp)
-                    .clip(shape = MaterialTheme.shapes.small)
             ) {
                 it.error(R.drawable.not_found).placeholder(R.drawable.placeholder_image)
                     .apply(RequestOptions().fitCenter())
@@ -70,7 +70,9 @@ fun PokemonItem(
             Text(
                 text = pokemon.name,
                 textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
 
         }

@@ -1,5 +1,8 @@
 package com.vvchn.vktestcase.domain.models
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 data class PokemonDetailed(
     val abilities: List<String>,
     val forms: List<String>,

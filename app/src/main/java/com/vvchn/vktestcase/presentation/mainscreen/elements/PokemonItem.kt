@@ -1,6 +1,8 @@
 package com.vvchn.vktestcase.presentation.mainscreen.elements
 
+import android.net.Uri
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -20,16 +22,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.request.RequestOptions
 import com.vvchn.vktestcase.R
 import com.vvchn.vktestcase.domain.models.Pokemon
+import com.vvchn.vktestcase.presentation.navigation.Route
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun PokemonItem(
     pokemon: Pokemon,
+    navController: NavController,
 ) {
     val roundedCornerShape = RoundedCornerShape(20.dp)
     Box(
@@ -39,6 +44,10 @@ fun PokemonItem(
             .padding(horizontal = 20.dp)
             .clip(roundedCornerShape)
             .background(MaterialTheme.colorScheme.surfaceVariant)
+            .clickable {
+                val encodedPokemonUrl = Uri.encode(pokemon.url)
+                navController.navigate("${Route.PokemonDetailedScreen.route}/${encodedPokemonUrl}")
+            }
     ) {
         Row(
             modifier = Modifier
@@ -48,7 +57,7 @@ fun PokemonItem(
         ) {
             GlideImage(
                 model = pokemon.image,
-                contentDescription = "image of ${pokemon.name} pokemon (svg)",
+                contentDescription = "image of ${pokemon.name} pokemon",
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .size(100.dp)

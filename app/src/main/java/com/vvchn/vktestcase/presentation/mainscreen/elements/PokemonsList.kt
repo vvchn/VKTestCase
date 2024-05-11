@@ -22,17 +22,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.vvchn.vktestcase.presentation.mainscreen.PokemonsListScreenState
-import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokemonsList(
     screenState: PokemonsListScreenState,
     snackbarHostState: SnackbarHostState,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    navController: NavController,
 ) {
     val pullToRefreshState = rememberPullToRefreshState()
     val context = LocalContext.current
@@ -69,7 +70,7 @@ fun PokemonsList(
                         itemSpacing = 16.dp,
                         modifier = Modifier.fillMaxSize()
                     ) { pokemon ->
-                        PokemonItem(pokemon = pokemon)
+                        PokemonItem(pokemon = pokemon, navController = navController)
                     }
                 }
             }

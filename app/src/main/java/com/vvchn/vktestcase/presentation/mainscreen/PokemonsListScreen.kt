@@ -17,12 +17,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.vvchn.vktestcase.R
 import com.vvchn.vktestcase.presentation.mainscreen.elements.PokemonsList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonsListScreen(vm: PokemonsListScreenViewModel) {
+fun PokemonsListScreen(
+    navController: NavController,
+    vm: PokemonsListScreenViewModel
+) {
     val uiState: PokemonsListScreenState by vm.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -48,7 +52,8 @@ fun PokemonsListScreen(vm: PokemonsListScreenViewModel) {
         PokemonsList(
             screenState = uiState,
             snackbarHostState = snackbarHostState,
-            paddingValues = scaffoldPaddingValues
+            paddingValues = scaffoldPaddingValues,
+            navController = navController,
         )
     }
 }

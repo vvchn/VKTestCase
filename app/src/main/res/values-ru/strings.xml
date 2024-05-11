@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">VKTestCase</string>
-    <string name="pokemons">Покемончики</string>
-    <string name="swipe_to_reload">Вы можете свайпнуть вниз чтобы повторить загрузку</string>
+    <string name="pokemons">Покемоны</string>
+    <string name="swipe_to_reload">Вы можете свайпнуть вниз, чтобы повторить загрузку</string>
     <string name="nothing_here">Здесь ничего нет :(</string>
     <string name="timed_out">Превышено время ожидания запроса</string>
     <string name="httpError">Ошибка HTTP:</string>
     <string name="unknown_error">Произошла неизвестная ошибка</string>
     <string name="check_connection">Проверьте подключение к интернету</string>
+    <string name="pokemon">Покемон</string>
+    <string name="abilities">Способности:</string>
+    <string name="forms">Формы тела:</string>
+    <string name="height">Длина (в дециметрах):</string>
+    <string name="weight">Вес (в гектограммах):</string>
+    <string name="can_be_found">Может быть найден в:</string>
+    <string name="stats">Характеристики:</string>
+    <string name="unknown">неизвестно</string>
 </resources>

@@ -7,4 +7,13 @@
     <string name="httpError">HTTP Error:</string>
     <string name="unknown_error">An unknown error has occurred</string>
     <string name="check_connection">Check your internet connection</string>
+    <string name="pokemon">Pokemon</string>
+    <string name="abilities">Abilities:</string>
+    <string name="forms">Forms:</string>
+    <string name="height">Height (in decimetres):</string>
+    <string name="weight">Weight (in hectograms):</string>
+    <string name="id" translatable="false">ID:</string>
+    <string name="can_be_found">Can be found in:</string>
+    <string name="stats">Stats:</string>
+    <string name="unknown">Unknown</string>
 </resources>

@@ -2,7 +2,7 @@ package com.vvchn.vktestcase.data.remote.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.vvchn.vktestcase.shared.PagingExceptions
+import com.vvchn.vktestcase.shared.NetworkRequestExceptions
 import com.vvchn.vktestcase.data.remote.api.PokeApi
 import com.vvchn.vktestcase.data.remote.api.PokemonsApi
 import com.vvchn.vktestcase.data.remote.api.dtos.ApiResponse
@@ -61,23 +61,23 @@ class PokemonsPagingSource (
             )
         } catch (e: HttpException) {
             LoadResult.Error(
-                throwable = PagingExceptions.NetworkError(e.code())
+                throwable = NetworkRequestExceptions.NetworkError(e.code())
             )
         } catch (e: SocketTimeoutException) {
             LoadResult.Error(
-                throwable = PagingExceptions.TimeOutError()
+                throwable = NetworkRequestExceptions.TimeOutError()
             )
         } catch (e: IOException) {
             LoadResult.Error(
-                throwable = PagingExceptions.ConnectionError()
+                throwable = NetworkRequestExceptions.ConnectionError()
             )
         } catch (e: RuntimeException) {
             LoadResult.Error(
-                throwable = PagingExceptions.ConnectionError()
+                throwable = NetworkRequestExceptions.ConnectionError()
             )
         } catch (e: Exception) {
             LoadResult.Error(
-                throwable = PagingExceptions.UnknownError()
+                throwable = NetworkRequestExceptions.UnknownError()
             )
         }
 

@@ -1,9 +1,9 @@
-package com.vvchn.vktestcase.presentation.mainscreen.elements
+package com.vvchn.vktestcase.presentation.shared
 
 import android.content.Context
 import androidx.compose.material3.SnackbarHostState
 import com.vvchn.vktestcase.R
-import com.vvchn.vktestcase.common.PagingExceptions
+import com.vvchn.vktestcase.shared.NetworkRequestExceptions
 
 suspend fun SnackbarErrorMessage(
     context: Context,
@@ -11,16 +11,16 @@ suspend fun SnackbarErrorMessage(
     error: Throwable
 ) {
     when(error) {
-        is PagingExceptions.NetworkError -> {
+        is NetworkRequestExceptions.NetworkError -> {
             snackbarHostState.showSnackbar("${context.getString(R.string.httpError)} ${error.httpCode}")
         }
-        is PagingExceptions.TimeOutError -> {
+        is NetworkRequestExceptions.TimeOutError -> {
             snackbarHostState.showSnackbar("${context.getString(R.string.timed_out)}")
         }
-        is PagingExceptions.ConnectionError -> {
+        is NetworkRequestExceptions.ConnectionError -> {
             snackbarHostState.showSnackbar("${context.getString(R.string.check_connection)}")
         }
-        is PagingExceptions.UnknownError -> {
+        is NetworkRequestExceptions.UnknownError -> {
             snackbarHostState.showSnackbar("${context.getString(R.string.unknown_error)}")
         }
         else -> {
